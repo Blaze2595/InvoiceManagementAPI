@@ -8,6 +8,7 @@ namespace InvoiceGenAPI.Entities
     public class PaymentGateway
     {
         public int PaymentGatewayId { get; set; }
+        public int CustomerId { get; set; }
         public bool Configured { get; set; }
         public string Additional_field { get; set; }
         public string Gateway_name { get; set; }

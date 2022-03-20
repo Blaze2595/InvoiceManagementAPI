@@ -14,7 +14,6 @@ namespace InvoiceGenAPI.Entities
         public string State { get; set; }
         public string Country { get; set; }
         public string GSTNumber { get; set; }
-        public int PaymentGatewayId { get; set; }
         public bool AllowPartialPayment { get; set; }
     }
 }
