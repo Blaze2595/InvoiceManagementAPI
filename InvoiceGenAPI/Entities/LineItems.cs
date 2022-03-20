@@ -8,6 +8,7 @@ namespace InvoiceGenAPI.Entities
     public class LineItems
     {
         public int LineItemsId { get; set; }
+        public int InvoiceId { get; set; }
         public int ItemId { get; set; }
         public int ProjectId { get; set; }
         public int Quantity { get; set; }
