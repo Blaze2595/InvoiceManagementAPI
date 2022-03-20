@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using InvoiceGenAPI.RequestDTOs;
 using InvoiceGenAPI.Models;
 using Microsoft.AspNetCore.Mvc;
+using InvoiceGenAPI.ResponseDTOs;
 
 namespace InvoiceGenAPI.Controllers
 {
@@ -13,25 +15,30 @@ namespace InvoiceGenAPI.Controllers
     public class InvoicesController : ControllerBase
     {
         [HttpGet]
-        public IEnumerable<InvoiceModel> Get()
+        //Gets the list of existing invoices
+        public List<InvoiceResponseDTO> Get()
         {
-            return null;
+            var x = new List<InvoiceResponseDTO>();
+            return x;
         }
-
+        
         [HttpPost]
-        public InvoiceModel Post()
+        //Create new invoice
+        public async Task<ActionResult<InvoiceResponseDTO>> Post(InvoiceDTO invoiceDTO)
         {
             return null;
         }
         
         [HttpDelete]
-        public HttpResponseMessage Delete()
+        //Delete an existing invoice
+        public DeleteInvoiceResponseDTO Delete(int invoice_id)
         {
             return null;
         }
 
-        [HttpPost]
-        public InvoiceModel Update()
+        [HttpPut]
+        //Edit an existing invoice
+        public InvoiceResponseDTO Put(InvoiceDTO invoice)
         {
             return null;
         }
