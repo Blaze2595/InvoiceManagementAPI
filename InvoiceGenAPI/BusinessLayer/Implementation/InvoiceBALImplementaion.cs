@@ -163,7 +163,38 @@ namespace InvoiceGenAPI.BusinessLayer.Implementation
 
         public List<InvoiceResponseDTO> GetInvoice()
         {
-            throw new NotImplementedException();
+            List<InvoiceResponseDTO> response = new List<InvoiceResponseDTO>();
+
+            var invoices = _dbcontext.Invoices.ToList();
+            foreach (var inv in invoices)
+            {
+                InvoiceResponseDTO resp = new InvoiceResponseDTO {
+                    Allow_partial_payments = _dbcontext.Customers.FirstOrDefault(x => x.CustomerID == inv.CustomerId).AllowPartialPayment,
+                    Contact_persons = helpers.GetCustomerContactList(_dbcontext.CustomerContact.Where(x => x.CustomerId == inv.CustomerId).ToList()),
+                    Custom_fields = helpers.GetCustomFields(_dbcontext.CustomFields.Where(x => x.InvoiceId == inv.InvoiceId).ToList()),
+                    Customer_id = inv.CustomerId,
+                    date = inv.Date,
+                    Discount = inv.Discount,
+                    Payment_terms = inv.PaymentTerms,
+                    Gst_no = _dbcontext.Customers.FirstOrDefault(x => x.CustomerID == inv.CustomerId).GSTNumber,
+                    Gst_treatment = inv.GstTreatment,
+                    Due_date = inv.Date.AddDays(inv.PaymentTerms),
+                    Invoice_Id = inv.InvoiceId,
+                    Invoice_number = inv.InvoiceNumber,
+                    Is_discount_before_tax = inv.DiscountBeforeTax,
+                    Line_items = helpers.GetLineItems(_dbcontext.lineItems.Where(x => x.InvoiceId == inv.InvoiceId).ToList()),
+                    Notes = inv.Notes,
+                    Payment_options = helpers.GetPaymentOptions(_dbcontext.Paymentgateway.Where(x => x.CustomerId == inv.CustomerId).ToList()),
+                    Place_of_supply = inv.PlaceOfSupply,
+                    Salesperson_name = inv.Salesman,
+                    Shipping_charges = inv.ShippingCharge.ToString(),
+                    Terms = inv.Terms
+                };
+
+                response.Add(resp);                
+            }
+
+            return response;
         }
 
         public InvoiceResponseDTO UpdateInvoice(InvoiceDTO invoice)

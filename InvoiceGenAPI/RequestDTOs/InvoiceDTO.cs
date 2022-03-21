@@ -11,7 +11,7 @@ namespace InvoiceGenAPI.RequestDTOs
     {
         [MaxLength(100)]
         public string Invoice_number { get; set; }
-        public List<string> Contact_persons { get; set; }
+        public List<int> Contact_persons { get; set; }
 
         [Required]
         public int Customer_id { get; set; }
