@@ -9,9 +9,9 @@ namespace InvoiceGenAPI.ResponseDTOs
     public class InvoiceResponseDTO
     {
         public int Invoice_Id { get; set; }
-        public int Invoice_number { get; set; }
+        public string Invoice_number { get; set; }
         public int Customer_id { get; set; }
-        public List<int> Contact_persons { get; set; }
+        public List<string> Contact_persons { get; set; }
         public string Salesperson_name { get; set; }
         public List<CustomFiledResponseDTO> Custom_fields { get; set; }
         public List<LineItemResponseDTO> Line_items { get; set; }

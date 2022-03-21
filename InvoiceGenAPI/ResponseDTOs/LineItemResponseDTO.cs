@@ -12,8 +12,7 @@ namespace InvoiceGenAPI.ResponseDTOs
         public int Project_id { get; set; }
         public string Product_type { get; set; }
         public string Name { get; set; }
-        public int Item_order { get; set; }
-        public int Rate { get; set; }
+        public float Rate { get; set; }
         public int Quantity { get; set; }
         public string Discount { get; set; }
         public string Tax_type { get; set; }
