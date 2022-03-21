@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using InvoiceGenAPI.ResponseDTOs;
 using InvoiceGenAPI.Data;
 using InvoiceGenAPI.BusinessLayer;
+using InvoiceGenAPI.BusinessLayer.Interface;
 
 namespace InvoiceGenAPI.Controllers
 {
@@ -16,12 +17,12 @@ namespace InvoiceGenAPI.Controllers
     [Route("api/[controller]")]
     public class InvoicesController : ControllerBase
     {
-        private readonly InvoiceBusinessLayer _invoiceBAL;
         private readonly DataContext _dbcontext;
-        public InvoicesController(DataContext dbcontext, InvoiceBusinessLayer invoiceBAL)
+        private readonly InvoiceBALInterface _invoiceBAL;
+        public InvoicesController(DataContext dbcontext, InvoiceBALInterface invoiceBAL)
         {
-            _dbcontext = dbcontext;
             _invoiceBAL = invoiceBAL;
+            _dbcontext = dbcontext;
 
         }
 

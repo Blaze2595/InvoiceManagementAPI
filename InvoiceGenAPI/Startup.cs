@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using InvoiceGenAPI.BusinessLayer.Implementation;
+using InvoiceGenAPI.BusinessLayer.Interface;
 using InvoiceGenAPI.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -38,6 +40,8 @@ namespace InvoiceGenAPI
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "InvoiceGenAPI", Version = "v1" });
             });
+
+            services.AddScoped<InvoiceBALInterface, InvoiceBALImplementaion>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

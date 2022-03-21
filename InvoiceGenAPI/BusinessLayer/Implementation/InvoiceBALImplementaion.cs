@@ -2,19 +2,20 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using InvoiceGenAPI.BusinessLayer.Interface;
 using InvoiceGenAPI.Data;
 
-namespace InvoiceGenAPI.BusinessLayer
+namespace InvoiceGenAPI.BusinessLayer.Implementation
 {
-    public class InvoiceBusinessLayer
+    public class InvoiceBALImplementaion : InvoiceBALInterface
     {
         private readonly DataContext _dbcontext;
-        public InvoiceBusinessLayer(DataContext dbcontext)
+        public InvoiceBALImplementaion(DataContext dbcontext)
         {
             _dbcontext = dbcontext;
         }
 
-        //Delete the invoice details from all the tables
+        //Delete Invoice details from all the tables
         public bool DeleteInvoice(int invoice_id)
         {
             try
