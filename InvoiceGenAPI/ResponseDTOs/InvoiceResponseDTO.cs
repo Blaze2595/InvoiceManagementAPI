@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace InvoiceGenAPI.ResponseDTOs
@@ -27,5 +28,7 @@ namespace InvoiceGenAPI.ResponseDTOs
         public List<PaymentGatewayResponseDTO> Payment_options { get; set; }
         public string Notes { get; set; }
         public string Terms { get; set; }
+        public HttpStatusCode StatusCode { get; set; }
+        public string Message { get; set; }
     }
 }

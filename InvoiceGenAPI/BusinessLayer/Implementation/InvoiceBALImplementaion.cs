@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using InvoiceGenAPI.BusinessLayer.Interface;
 using InvoiceGenAPI.Data;
+using InvoiceGenAPI.RequestDTOs;
+using InvoiceGenAPI.ResponseDTOs;
 
 namespace InvoiceGenAPI.BusinessLayer.Implementation
 {
@@ -13,6 +15,11 @@ namespace InvoiceGenAPI.BusinessLayer.Implementation
         public InvoiceBALImplementaion(DataContext dbcontext)
         {
             _dbcontext = dbcontext;
+        }
+
+        public InvoiceResponseDTO CreateInvoice(InvoiceDTO invoice)
+        {
+            return null;
         }
 
         //Delete Invoice details from all the tables
@@ -47,6 +54,16 @@ namespace InvoiceGenAPI.BusinessLayer.Implementation
             {
                 return false;
             }
+        }
+
+        public List<InvoiceResponseDTO> GetInvoice()
+        {
+            throw new NotImplementedException();
+        }
+
+        public InvoiceResponseDTO UpdateInvoice(InvoiceDTO invoice)
+        {
+            throw new NotImplementedException();
         }
     }
 }

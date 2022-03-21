@@ -18,18 +18,26 @@ namespace InvoiceGenAPI.RequestDTOs
         public string Place_of_supply { get; set; }
         public string Gst_treatment { get; set; }
         public string Gst_no { get; set; }
+        
+        [Required]
         public DateTime Date { get; set; }
+        
+        [MaxLength(100)]
         public int Payment_terms { get; set; }
         public DateTime Due_date { get; set; }
         public string discount { get; set; }
         public bool is_discount_before_tax { get; set; }
         public string Salesperson_name { get; set; }
         public List<CustomFieldDTO> Custom_fields { get; set; }
+        
+        [Required]
         public List<LineItemDTO> Line_items { get; set; }
         public List<PaymentGatewayDTO> Payment_options { get; set; }
         public bool Allow_partial_payments { get; set; }
         public string Notes { get; set; }
         public string Terms { get; set; }
+        
+        [MaxLength(100)]
         public float Shipping_charge { get; set; }
     }
 }

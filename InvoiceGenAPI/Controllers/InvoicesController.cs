@@ -1,15 +1,11 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
-using System.Threading.Tasks;
 using InvoiceGenAPI.RequestDTOs;
-using InvoiceGenAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using InvoiceGenAPI.ResponseDTOs;
 using InvoiceGenAPI.Data;
-using InvoiceGenAPI.BusinessLayer;
 using InvoiceGenAPI.BusinessLayer.Interface;
+using System.Net;
 
 namespace InvoiceGenAPI.Controllers
 {
@@ -30,15 +26,23 @@ namespace InvoiceGenAPI.Controllers
         //Gets the list of existing invoices
         public List<InvoiceResponseDTO> Get()
         {
-            var x = new List<InvoiceResponseDTO>();
-            return x;
+            List<InvoiceResponseDTO> response = _invoiceBAL.GetInvoice();
+            return response;
         }
 
         [HttpPost]
         //Create new invoice
         public InvoiceResponseDTO Post(InvoiceDTO invoiceDTO)
         {
-            return null;
+            if (!_dbcontext.Invoices.Any(x => x.InvoiceNumber == invoiceDTO.Invoice_number))
+            {
+                InvoiceResponseDTO response = _invoiceBAL.CreateInvoice(invoiceDTO);
+                return response;
+            }
+            else
+            {
+                return new InvoiceResponseDTO { StatusCode = HttpStatusCode.Conflict, Message = "Invoice Number Already Exist" };
+            }
         }
 
         [HttpDelete]
@@ -78,7 +82,15 @@ namespace InvoiceGenAPI.Controllers
         //Edit an existing invoice
         public InvoiceResponseDTO Put(InvoiceDTO invoice)
         {
-            return null;
+            if (_dbcontext.Invoices.Any(x => x.InvoiceNumber == invoice.Invoice_number))
+            {
+                InvoiceResponseDTO response = _invoiceBAL.UpdateInvoice(invoice);
+                return response;
+            }
+            else
+            {
+                return new InvoiceResponseDTO { StatusCode = HttpStatusCode.NotFound, Message = "Invoice Details Not Found" };
+            }
         }
     }
 }
